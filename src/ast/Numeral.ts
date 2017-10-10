@@ -21,7 +21,9 @@ export class Numeral implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    hexValue:string = this.value.toString(16);
+    context.appendInstruction(context.getTag()+':  ldc.i4 '+hexValue);
+    return context;
   }
 
   maxStackIL(value: number): number {

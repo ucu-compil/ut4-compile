@@ -23,7 +23,8 @@ export class Assignment implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context.addVar(this.id);
+    return context;
   }
 
   maxStackIL(value: number): number {

@@ -23,7 +23,10 @@ export class Addition implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context =this.lhs.compileCIL(context);
+    context= this.rhs.compileCIL(context);
+    context.append('add');
+    return context;
   }
 
   maxStackIL(value: number): number {
