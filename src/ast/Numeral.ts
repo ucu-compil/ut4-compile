@@ -21,7 +21,9 @@ export class Numeral implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    var str = `${context.getTag()}: ldc.i4.${this.value}`;
+    context.appendInstruction(str);
+    return context;
   }
 
   maxStackIL(value: number): number {
