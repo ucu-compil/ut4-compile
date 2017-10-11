@@ -2,7 +2,7 @@ import { Exp } from './ASTNode';
 import { CompilationContext } from '../compileCIL/CompilationContext';
 
 /**
-  Representación de multiplicaciones.
+  Representación de sumas.
 */
 export class Multiplication implements Exp {
 
@@ -23,7 +23,10 @@ export class Multiplication implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context = this.lhs.compileCIL(context);
+    context = this.rhs.compileCIL(context);
+    context.appendInstruction('mul');
+    return context;
   }
 
   maxStackIL(value: number): number {

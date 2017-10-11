@@ -21,7 +21,7 @@ export class Numeral implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    var str = `${context.getTag()}: ldc.i4.${this.value}`;
+    var str = `ldc.i4.${this.value}`;
     context.appendInstruction(str);
     return context;
   }

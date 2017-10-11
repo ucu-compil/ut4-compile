@@ -29,7 +29,10 @@ export class Sequence implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    for(var i=0;i<this.statements.length;i++){
+      context = this.statements[i].compileCIL(context);
+    }
+    return context;
   }
 
   maxStackIL(value: number): number {

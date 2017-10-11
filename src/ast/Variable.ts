@@ -20,7 +20,14 @@ export class Variable implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    var n = context.getVar(this.id);
+    if (n != -1){
+      context.appendInstruction(`ldloc.i4.${n}`);
+    }
+    else{
+      throw "La variable no esta definida.";
+    }
+    return context;
   }
 
   maxStackIL(value: number): number {

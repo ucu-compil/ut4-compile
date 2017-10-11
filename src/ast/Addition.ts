@@ -25,8 +25,7 @@ export class Addition implements Exp {
   compileCIL(context: CompilationContext): CompilationContext {
     context = this.lhs.compileCIL(context);
     context = this.rhs.compileCIL(context);
-    var str = `${context.getTag()}: add`;
-    context.appendInstruction(str);
+    context.appendInstruction('add');
     return context;
   }
 

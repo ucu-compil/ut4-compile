@@ -24,7 +24,13 @@ export class Assignment implements Stmt {
 
   compileCIL(context: CompilationContext): CompilationContext {
     context = this.exp.compileCIL(context);
-    var str = `${context.getTag()}: stloc.${context.addVar(this.id,'int32')}`;
+    var str = '';
+    var n = context.getVar(this.id);
+    if(n != -1){
+      str = `stloc.${n}`;
+    } else {
+      str = `stloc.${context.addVar(this.id,'int32')}`;
+    }
     context.appendInstruction(str);
     return context;
   }

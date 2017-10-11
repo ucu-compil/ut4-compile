@@ -50,7 +50,7 @@ export class CompilationContext {
       .entrypoint
       .maxstack ${maxStack}
       .locals(${this.freeVariables()})
-      ${this.cil.join('\n')}
+      ${this.cil.join('\t\n')}
       ret
     }
     `

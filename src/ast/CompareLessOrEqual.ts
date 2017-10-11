@@ -23,7 +23,11 @@ export class CompareLessOrEqual implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context = this.lhs.compileCIL(context);
+    context = this.lhs.compileCIL(context);
+    context.appendInstruction('cgt');
+    context.appendInstruction('neg');
+    return context;
   }
 
   maxStackIL(value: number): number {

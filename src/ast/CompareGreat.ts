@@ -23,7 +23,10 @@ export class CompareGreat implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context = this.lhs.compileCIL(context);
+    context = this.lhs.compileCIL(context);
+    context.appendInstruction('cgt');
+    return context;
   }
 
   maxStackIL(value: number): number {
