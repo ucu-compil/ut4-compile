@@ -5,22 +5,17 @@
       .entrypoint
       .maxstack 2
       .locals(int32 a,
-      int32 b,
-      int32 c)
-      ldc.i4 1
+      int32 b)
+      ldc.i4 0xa
       stloc 0
-      ldc.i4 2
-      stloc 1
       ldloc 0
-      ldloc 1
-      mul
-      stloc 2
+      ldloc 0
+      add
+      stloc 1
       
       ldloc 0
       call void class [mscorlib]System.Console::WriteLine(int32)
       ldloc 1
-      call void class [mscorlib]System.Console::WriteLine(int32)
-      ldloc 2
       call void class [mscorlib]System.Console::WriteLine(int32)
       ret
     }
