@@ -29,14 +29,9 @@ export class Sequence implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-<<<<<<< HEAD
     var st:any;
     for(st in this.statements){
-=======
-/*    for(Stmt st in statements){
->>>>>>> 87a6f15aa837859884551061433f053c793c947b
-      context = st.compileCIL(context);
-    }*/
+    }
     return context;
   }
 
