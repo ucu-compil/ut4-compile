@@ -29,7 +29,8 @@ export class Sequence implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    for(Stmt st in statements){
+    var st:any;
+    for(st in this.statements){
       context = st.compileCIL(context);
     }
     return context;
