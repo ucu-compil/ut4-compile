@@ -24,7 +24,7 @@ export class CompareEqual implements Exp {
 
   compileCIL(context: CompilationContext): CompilationContext {
     context = this.lhs.compileCIL(context);
-    context = this.lhs.compileCIL(context);
+    context = this.rhs.compileCIL(context);
     context.appendInstruction('ceq');
     return context;
   }

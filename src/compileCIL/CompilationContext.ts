@@ -48,8 +48,7 @@ export class CompilationContext {
       ldloc.${i}
       call void class [mscorlib]System.Console::WriteLine(int32)`;
     }
-    return `
-    .assembly Main {}
+    return `    .assembly Main {}
     .assembly extern mscorlib {}
     .method static void Main()
     {
@@ -59,7 +58,6 @@ export class CompilationContext {
       ${this.cil.join('\n      ')}
       ${str}
       ret
-    }
-    `
+    }`
   }
 }

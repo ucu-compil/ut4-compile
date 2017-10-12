@@ -27,9 +27,9 @@ export class Assignment implements Stmt {
     var str = '';
     var n = context.getVar(this.id);
     if(n != -1){
-      str = `stloc.${n}`;
+      str = `stloc ${n.toString(16)}`;
     } else {
-      str = `stloc.${context.addVar(this.id,'int32')}`;
+      str = `stloc ${context.addVar(this.id,'int32')}`;
     }
     context.appendInstruction(str);
     return context;

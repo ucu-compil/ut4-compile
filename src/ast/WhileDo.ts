@@ -27,7 +27,7 @@ export class WhileDo implements Stmt {
     context.appendInstruction(`br ${tagCond}`);
     context.appendInstruction(`${tagStart}:`);
     context = this.body.compileCIL(context);
-    context.appendInstruction(`${tagCond}`);
+    context.appendInstruction(`${tagCond}:`);
     context = this.cond.compileCIL(context);
     context.appendInstruction(`brtrue ${tagStart}`);
     return context;
