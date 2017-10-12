@@ -45,7 +45,7 @@ export class CompilationContext {
     var str = "";
     for(var i=0;i<this.vars.length;i++){
       str += `
-      ldloc.${i}
+      ldloc ${i}
       call void class [mscorlib]System.Console::WriteLine(int32)`;
     }
     return `    .assembly Main {}
