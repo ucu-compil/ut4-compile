@@ -26,6 +26,7 @@ export class Multiplication implements Exp {
     context = this.lhs.compileCIL(context);
     context = this.rhs.compileCIL(context);
     context.appendInstruction('mul');
+    return context;
   }
 
   maxStackIL(value: number): number {
