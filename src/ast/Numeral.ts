@@ -21,8 +21,8 @@ export class Numeral implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    hexValue:string = this.value.toString(16);
-    context.appendInstruction(context.getTag()+':  ldc.i4 '+hexValue);
+    var hexValue = this.value.toString(16);
+    context.appendInstruction('ldc.i4 '+hexValue);
     return context;
   }
 
