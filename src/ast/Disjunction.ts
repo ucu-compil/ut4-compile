@@ -30,6 +30,6 @@ export class Disjunction implements Exp {
   }
 
   maxStackIL(value: number): number {
-    return value - 1;
+    return Math.max(this.lhs.maxStack(value),this.rhs.maxStack(value));
   }
 }
