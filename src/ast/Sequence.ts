@@ -17,7 +17,7 @@ export class Sequence implements Stmt {
       .filter((stmt) => (stmt !== undefined))
       .map((stmt) => (stmt.toString()))
       .join(", ");
-    return `Sequence(${statements})`
+    return `Sequence(${statements})`;
   }
 
   unparse(): string {
@@ -29,9 +29,9 @@ export class Sequence implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    for(Stmt st in statements){
+/*    for(Stmt st in statements){
       context = st.compileCIL(context);
-    }
+    }*/
     return context;
   }
 
