@@ -23,7 +23,8 @@ import {
   Substraction,
   TruthValue,
   Variable,
-  WhileDo
+  WhileDo,
+  Print
 } from '../ast/AST';
 
 import { tokens } from './Tokens';
@@ -47,7 +48,7 @@ stmtelse ->
   | "{" stmt:* "}"                        {% ([, statements, ]) => (new Sequence(statements)) %}
   | "while" exp "do" stmt                 {% ([, cond, , body]) => (new WhileDo(cond, body)) %}
   | "if" exp "then" stmtelse "else" stmt  {% ([, cond, , thenBody, , elseBody]) => (new IfThenElse(cond, thenBody, elseBody)) %}
-
+  | "print" "(" exp ")" ";"               {% ([,,exp,,]) => (new Print(exp)) %}
 
 # Expressions
 

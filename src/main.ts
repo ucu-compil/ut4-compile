@@ -34,8 +34,9 @@ while (true) {
       }
       case 1: {
         const node = nodes[0];
+        const maxStack = node.maxStackIL(0);
         context = node.compileCIL(context);
-        console.log(context.getCIL(600));
+        console.log(context.getCIL(maxStack));
         break;
       }
       default: {

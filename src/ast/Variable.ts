@@ -22,7 +22,7 @@ export class Variable implements Exp {
   compileCIL(context: CompilationContext): CompilationContext {
     var n = context.getVar(this.id);
     if (n != -1){
-      context.appendInstruction(`ldloc.i4.${n}`);
+      context.appendInstruction(`ldloc.${n}`);
     }
     else{
       throw "La variable no esta definida.";

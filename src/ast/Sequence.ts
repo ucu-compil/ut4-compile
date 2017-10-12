@@ -36,9 +36,8 @@ export class Sequence implements Stmt {
   }
 
   maxStackIL(value: number): number {
-    for (let stmt of this.statements) {
-      value = stmt.maxStackIL(value)
-    }
-    return value;
+    return Math.max.apply(this,
+      this.statements.map((x) => (x.maxStackIL(value)))
+    );
   }
 }

@@ -1,10 +1,10 @@
-import { Exp } from './ASTNode';
+import { Exp, Stmt } from './ASTNode';
 import { CompilationContext } from '../compileCIL/CompilationContext';
 
 /**
-  Representación de las negaciones de expresiones booleanas.
+  Representación de las asignaciones de valores a variables.
 */
-export class Negation implements Exp {
+export class Print implements Stmt {
 
   exp: Exp;
 
@@ -13,16 +13,16 @@ export class Negation implements Exp {
   }
 
   toString(): string {
-    return `Negation(${this.exp.toString()})`;
+    return `Print(${this.exp.toString()})`;
   }
 
   unparse(): string {
-    return `(!${this.exp.unparse()})`;
+    return `print(${this.exp.unparse()});`;
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    context = this.exp.compileCIL(context);
-    context.appendInstruction('neg');
+    this.exp.compileCIL(context);
+    context.appendInstruction("call void class [mscorlib]System.Console::WriteLine(int32)");
     return context;
   }
 

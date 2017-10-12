@@ -38,10 +38,16 @@ export class CompilationContext {
   }
 
   freeVariables(): string {
-    return this.vars.map((v) => (`${v.type} ${v.id}`)).join(',\n');
+    return this.vars.map((v) => (`${v.type} ${v.id}`)).join(',\n      ');
   }
 
   getCIL(maxStack: number): string {
+    var str = "";
+    for(var i=0;i<this.vars.length;i++){
+      str += `
+      ldloc.${i}
+      call void class [mscorlib]System.Console::WriteLine(int32)`;
+    }
     return `
     .assembly Main {}
     .assembly extern mscorlib {}
@@ -50,7 +56,8 @@ export class CompilationContext {
       .entrypoint
       .maxstack ${maxStack}
       .locals(${this.freeVariables()})
-      ${this.cil.join('\t\n')}
+      ${this.cil.join('\n      ')}
+      ${str}
       ret
     }
     `

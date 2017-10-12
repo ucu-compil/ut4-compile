@@ -36,6 +36,6 @@ export class Assignment implements Stmt {
   }
 
   maxStackIL(value: number): number {
-    return value - 1;
+    return this.exp.maxStackIL(value);
   }
 }
