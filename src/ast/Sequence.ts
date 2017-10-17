@@ -29,16 +29,21 @@ export class Sequence implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    var st:any;
-    for(st in this.statements){
+      var i:any;
+      for (i in this.statements){
+        context = i.compileCIL(context);
+        return context;
+      }
     }
-    return context;
-  }
+
 
   maxStackIL(value: number): number {
+    var val = 0;
     for (let stmt of this.statements) {
-      value = stmt.maxStackIL(value)
+      if(stmt.maxStackIL(value)>val){
+          val = stmt.maxStackIL(value)
+      }
     }
-    return value;
+    return val;
   }
 }

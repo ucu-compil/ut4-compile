@@ -24,12 +24,19 @@ export class IfThenElse implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
-  }
+      const tag1 = context.getTag();
+      const tag2 = context.getTag();
+      context = this.cond.compileCIL(context);
+      context.appendInstruction("brtrue "+ tag1);
+      context = this.elseBody.compileCIL(context);
+      context.appendInstruction("br "+ tag2);
+      context.appendInstruction(tag1+":");
+      context = this.thenBody.compileCIL(context);
+      context.appendInstruction(tag2+":");
+      return context;
+    }
 
   maxStackIL(value: number): number {
-    const maxStackILThen = this.thenBody.maxStackIL(value);
-    const maxStackILElse = this.elseBody.maxStackIL(value);
-    return 1 + Math.max(maxStackILThen, maxStackILElse); // cond + max of the two branches
+    return Math.max(this.cond.maxStackIL(value),this.thenBody.maxStackIL(value),this.elseBody.maxStackIL(value));
   }
 }

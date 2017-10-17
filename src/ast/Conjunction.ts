@@ -30,6 +30,6 @@ export class Conjunction implements Exp {
   }
 
   maxStackIL(value: number): number {
-    return Math.max(this.lhs.maxStackIL(value),this.rhs.maxStackIL(value));
+    return Math.max(this.lhs.maxStackIL(value),this.rhs.maxStackIL(value)+1);
   }
 }

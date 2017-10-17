@@ -27,6 +27,6 @@ export class Negation implements Exp {
   }
 
   maxStackIL(value: number): number {
-    return value;
+    return this.exp.maxStackIL(value);
   }
 }

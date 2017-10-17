@@ -25,7 +25,7 @@ export class Assignment implements Stmt {
   compileCIL(context: CompilationContext): CompilationContext {
     context = this.exp.compileCIL(context);
     if(context.getVar(this.id) != -1){
-      context.appendInstruction('stloc.'+this.id);  
+      context.appendInstruction('stloc.'+this.id);
     } else {
       context.appendInstruction('stloc.'+context.addVar(this.id,'Int32'));
     }
@@ -33,6 +33,6 @@ export class Assignment implements Stmt {
   }
 
   maxStackIL(value: number): number {
-    return value - 1;
+    return this.exp.maxStackIL(value);
   }
 }

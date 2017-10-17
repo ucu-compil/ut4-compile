@@ -20,7 +20,6 @@ export class Variable implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    //context = this.id.compileCIL(context);
     if(context.getVar(this.id) != -1){
     } else {
     }

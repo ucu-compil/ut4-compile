@@ -22,11 +22,15 @@ export class IfThen implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    const tag1 = context.getTag();
+    context = this.cond.compileCIL(context);
+    context.appendInstruction("brtrue "+ tag1);
+    context.appendInstruction(tag1+":");
+    return context;
   }
 
+
   maxStackIL(value: number): number {
-    const maxStackILThen = this.thenBody.maxStackIL(value);
-    return 1 + maxStackILThen; // cond + then
+    return Math.max(this.cond.maxStackIL(value),this.thenBody.maxStackIL(value));
   }
 }
