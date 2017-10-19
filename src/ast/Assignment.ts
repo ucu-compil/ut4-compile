@@ -27,7 +27,7 @@ export class Assignment implements Stmt {
     if(context.getVar(this.id) != -1){
       context.appendInstruction('stloc.'+this.id);
     } else {
-      context.appendInstruction('stloc.'+context.addVar(this.id,'Int32'));
+      context.appendInstruction('stloc.'+context.addVar(this.id,'int32'));
     }
     return context;
   }

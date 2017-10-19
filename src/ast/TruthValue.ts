@@ -21,7 +21,7 @@ export class TruthValue implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    context.appendInstruction('ldc.i4'+this.value);
+    context.appendInstruction('ldc.i4 1');
     return context;
   }
 
