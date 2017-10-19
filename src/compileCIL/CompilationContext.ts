@@ -52,6 +52,11 @@ export class CompilationContext {
       .maxstack ${maxStack}
       .locals(${this.freeVariables()})
       ${this.cil.join('\n')}
+      ldstr "resultado = "
+      ldloc.0
+      box [mscorib]System.Int32
+      call string [mscorlib]System.String::Concat(object,object)
+      call void [mscorlib]system.Console::WriteLine(string) 
       ret
     }
     `
