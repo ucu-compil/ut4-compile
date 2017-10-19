@@ -29,13 +29,15 @@ export class Sequence implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    for(var i=0;i<this.statements.length;i++){
+      context = this.statements[i].compileCIL(context);
+    }
+    return context;
   }
 
   maxStackIL(value: number): number {
-    for (let stmt of this.statements) {
-      value = stmt.maxStackIL(value)
-    }
-    return value;
+    return Math.max.apply(this,
+      this.statements.map((x) => (x.maxStackIL(value)))
+    );
   }
 }

@@ -23,10 +23,19 @@ export class Assignment implements Stmt {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context = this.exp.compileCIL(context);
+    var str = '';
+    var n = context.getVar(this.id);
+    if(n != -1){
+      str = `stloc ${n.toString(16)}`;
+    } else {
+      str = `stloc ${context.addVar(this.id,'int32')}`;
+    }
+    context.appendInstruction(str);
+    return context;
   }
 
   maxStackIL(value: number): number {
-    return value - 1;
+    return this.exp.maxStackIL(value);
   }
 }

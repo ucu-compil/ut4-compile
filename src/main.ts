@@ -34,8 +34,18 @@ while (true) {
       }
       case 1: {
         const node = nodes[0];
+        const maxStack = node.maxStackIL(0);
         context = node.compileCIL(context);
-        console.log(context.getCIL());
+        var str = context.getCIL(maxStack)
+        console.log(str);
+
+        var fs = require('fs');
+        fs.writeFileSync("res.il", str, function(err) {
+        if(err) {
+          return console.log(err);
+        }
+        console.log("The file was saved!");
+});
         break;
       }
       default: {

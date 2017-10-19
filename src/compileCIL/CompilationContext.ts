@@ -17,6 +17,7 @@ export class CompilationContext {
   constructor() {
     this.count = 0;
     this.vars = [];
+    this.cil = [];
   }
 
   getTag(): string {
@@ -37,21 +38,26 @@ export class CompilationContext {
   }
 
   freeVariables(): string {
-    return this.vars.map((v) => (`${v.type} ${v.id}`)).join(',\n');
+    return this.vars.map((v) => (`${v.type} ${v.id}`)).join(',\n      ');
   }
 
   getCIL(maxStack: number): string {
-    return `
-    .assembly Main {}
+    var str = "";
+    for(var i=0;i<this.vars.length;i++){
+      str += `
+      ldloc ${i.toString(16)}
+      call void class [mscorlib]System.Console::WriteLine(int32)`;
+    }
+    return `    .assembly Main {}
     .assembly extern mscorlib {}
     .method static void Main()
     {
       .entrypoint
       .maxstack ${maxStack}
       .locals(${this.freeVariables()})
-      ${this.cil.join('\n')}
+      ${this.cil.join('\n      ')}
+      ${str}
       ret
-    }
-    `
+    }`
   }
 }
