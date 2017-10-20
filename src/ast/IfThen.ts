@@ -25,6 +25,7 @@ export class IfThen implements Stmt {
     const tag1 = context.getTag();
     context = this.cond.compileCIL(context);
     context.appendInstruction("brtrue "+ tag1);
+    context = this.thenBody.compileCIL(context);
     context.appendInstruction(tag1+":");
     return context;
   }

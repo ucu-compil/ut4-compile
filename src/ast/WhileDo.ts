@@ -26,13 +26,13 @@ export class WhileDo implements Stmt {
     var brsTag = context.getTag();
     var brtrueTag = context.getTag();
 
-    context.appendInstruction('br.s ' + brsTag);
-    context.appendInstruction(brtrueTag);
+    context.appendInstruction('br ' + brsTag);
+    context.appendInstruction(brtrueTag+":");
     context = this.body.compileCIL(context);
-    context.appendInstruction(brsTag);
-    context = this.cond.compileCIL(context);
-    context.appendInstruction('brtrue.s ' + brtrueTag);
 
+    context.appendInstruction(brsTag+":");
+    context = this.cond.compileCIL(context);
+    context.appendInstruction('brtrue ' + brtrueTag);
     return context;
   }
 
