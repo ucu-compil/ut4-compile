@@ -21,7 +21,8 @@ export class TruthValue implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context.appendInstruction('ldc.i4 1');
+    return context;
   }
 
   maxStackIL(value: number): number {

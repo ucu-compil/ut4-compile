@@ -17,6 +17,7 @@ export class CompilationContext {
   constructor() {
     this.count = 0;
     this.vars = [];
+    this.cil = [];
   }
 
   getTag(): string {
@@ -40,8 +41,9 @@ export class CompilationContext {
     return this.vars.map((v) => (`${v.type} ${v.id}`)).join(',\n');
   }
 
-  getCIL(maxStack: number): string {
-    return `
+  getCIL(maxStack: number): string {//Fabulizar
+    var fs = require('fs');
+    var str= `
     .assembly Main {}
     .assembly extern mscorlib {}
     .method static void Main()
@@ -50,8 +52,17 @@ export class CompilationContext {
       .maxstack ${maxStack}
       .locals(${this.freeVariables()})
       ${this.cil.join('\n')}
+      ldloc.0
+      call       void [mscorlib]System.Console::Write(int32)
+      nop
       ret
     }
     `
+    fs.writeFileSync("ut4-comp.il", str, function(err){
+      if(err){
+        return console.log(err);
+      }
+    });
+    return str;
   }
 }

@@ -21,10 +21,12 @@ export class Negation implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    context = this.exp.compileCIL(context);
+    context.appendInstruction('neg');
+    return context;
   }
 
   maxStackIL(value: number): number {
-    return value;
+    return this.exp.maxStackIL(value);
   }
 }

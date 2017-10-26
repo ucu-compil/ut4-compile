@@ -20,7 +20,10 @@ export class Variable implements Exp {
   }
 
   compileCIL(context: CompilationContext): CompilationContext {
-    return undefined;
+    if(context.getVar(this.id) != -1){
+    } else {
+    }
+    return context;
   }
 
   maxStackIL(value: number): number {
